@@ -1,16 +1,19 @@
 package pers.example.beans;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.annotation.PreDestroy;
-import org.springframework.context.annotation.Scope;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import pers.example.services.VehicleServices;
 
 @Component
-@Scope("prototype")
 public class Vehicle {
 
     private String name;
     private int maxSpeed;
+    private final VehicleServices vehicleServices;
+
+    public VehicleServices getVehicleServices() {
+        return vehicleServices;
+    }
 
     public String getName() {
         return name;
@@ -28,15 +31,8 @@ public class Vehicle {
         this.maxSpeed = maxSpeed;
     }
 
-    @PostConstruct
-    public void init(){
-        System.out.println("init method called");
-        this.name = "Audi";
-        this.maxSpeed = 200;
-    }
-
-    @PreDestroy
-    public void destroy(){
-        System.out.println("destroy method called");
+    @Autowired
+    public Vehicle(VehicleServices vehicleServices) {
+        this.vehicleServices = vehicleServices;
     }
 }

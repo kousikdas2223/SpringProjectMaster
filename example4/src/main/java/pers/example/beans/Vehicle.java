@@ -2,11 +2,9 @@ package pers.example.beans;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-@Component
-@Scope("prototype")
+
 public class Vehicle {
 
     private String name;
@@ -28,15 +26,14 @@ public class Vehicle {
         this.maxSpeed = maxSpeed;
     }
 
-    @PostConstruct
-    public void init(){
-        System.out.println("init method called");
-        this.name = "Audi";
-        this.maxSpeed = 200;
-    }
-
-    @PreDestroy
-    public void destroy(){
-        System.out.println("destroy method called");
-    }
+//    @PostConstruct
+//    public void init(){
+//        System.out.println("Vehicle init method called");
+//    }
+//
+//
+//    @PreDestroy
+//    public void destroy(){
+//        System.out.println("destroy method called");
+//    }
 }
